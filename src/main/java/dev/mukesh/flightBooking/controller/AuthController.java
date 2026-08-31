@@ -1,7 +1,9 @@
 package dev.mukesh.flightBooking.controller;
 
 
+import dev.mukesh.flightBooking.model.req.UserLoginReq;
 import dev.mukesh.flightBooking.model.req.UserRegisterReq;
+import dev.mukesh.flightBooking.model.res.UserLoginRes;
 import dev.mukesh.flightBooking.model.res.UserRegisterRes;
 import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
@@ -19,6 +21,11 @@ public class AuthController {
     }
 
     @PostMapping("/login")
+    public ResponseEntity<UserLoginRes> login(@RequestBody UserLoginReq body) {
+        // service logic
+    }
+
+
 
 
 
