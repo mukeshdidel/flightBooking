@@ -9,9 +9,8 @@ import lombok.NoArgsConstructor;
 import lombok.RequiredArgsConstructor;
 
 @Entity
-@RequiredArgsConstructor
-@NoArgsConstructor
 @Data
+@NoArgsConstructor
 public class Airport {
     @Id
     private String airportCode;

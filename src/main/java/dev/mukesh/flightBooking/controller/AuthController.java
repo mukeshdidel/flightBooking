@@ -18,11 +18,14 @@ public class AuthController {
     @PostMapping("/register")
     public ResponseEntity<UserRegisterRes> register(@Valid @RequestBody UserRegisterReq body) {
         // todo: add service logic
+        return ResponseEntity.ok(new UserRegisterRes());
     }
 
     @PostMapping("/login")
     public ResponseEntity<UserLoginRes> login(@RequestBody UserLoginReq body) {
         // service logic
+
+        return ResponseEntity.ok(new UserLoginRes());
     }
 
 
