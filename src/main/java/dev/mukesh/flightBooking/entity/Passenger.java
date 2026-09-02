@@ -13,23 +13,20 @@ import java.util.List;
 @Entity
 @NoArgsConstructor
 @Data
-@Table(name = "users")
-public class User {
+public class Passenger {
 
     @Id
     @SequenceGenerator(
-            name = "user_sequence",
-            sequenceName = "user_sequence",
+            name = "passenger_sequence",
+            sequenceName = "passenger_sequence",
             allocationSize = 1
     )
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "user_sequence")
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "passenger_sequence")
     private Integer id;
 
-    @Column(nullable = false, unique = true)
-    private String email;
-
-    @Column(nullable = false)
-    private String password;
+    @ManyToOne
+    @JoinColumn(name = "user_id", nullable = false)
+    private User user;
 
     @Column(nullable = false)
     private String firstName;
@@ -37,15 +34,18 @@ public class User {
     @Column(nullable = false)
     private String lastName;
 
-    @Column(nullable = false, unique = true)
-    private String phone;
+    @Column(nullable = false)
+    private String email;
 
-    @OneToMany(mappedBy = "user")
-    private List<Booking> bookings;
+    @Column(nullable = false)
+    private String phoneNumber;
 
-    @OneToMany(mappedBy = "user")
-    private List<Passenger> passengers;
+    private String passportNumber;
 
+    private String nationality;
+
+    @OneToMany(mappedBy = "passenger")
+    private List<Ticket> tickets;
 
     @CreationTimestamp
     private LocalDateTime createdAt;
@@ -54,3 +54,4 @@ public class User {
     private LocalDateTime updatedAt;
 
 }
+
