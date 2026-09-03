@@ -24,19 +24,19 @@ public class Flight extends BaseEntity {
     private String flightNum;
 
     @ManyToOne
-    @JoinColumn(name = "airline_code", nullable = false, referencedColumnName = "airline_code")
+    @JoinColumn(name = "airline_code", nullable = false, referencedColumnName = "airlineCode")
     private Airline airline;
 
     @ManyToOne
-    @JoinColumn(name = "source_airport", nullable = false, referencedColumnName = "airport_code")
+    @JoinColumn(name = "source_airport", nullable = false, referencedColumnName = "airportCode")
     private Airport sourceAirport;
 
     @ManyToOne
-    @JoinColumn(name = "dest_airport", nullable = false, referencedColumnName = "airport_code")
+    @JoinColumn(name = "dest_airport", nullable = false, referencedColumnName = "airportCode")
     private Airport destAirport;
 
     @ManyToOne
-    @JoinColumn(name = "aircraft_id", nullable = false, referencedColumnName = "aircraft_id")
+    @JoinColumn(name = "aircraft_id", nullable = false, referencedColumnName = "aircraftId")
     private Aircraft aircraft;
 
 

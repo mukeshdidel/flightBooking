@@ -23,7 +23,7 @@ public class Seat extends BaseEntity {
 
 
     @ManyToOne
-    @JoinColumn(name = "aircraft_id", nullable = false, referencedColumnName = "aircraft_id")
+    @JoinColumn(name = "aircraft_id", nullable = false, referencedColumnName = "aircraftId")
     private Aircraft aircraft;
 
     @Column(nullable = false)

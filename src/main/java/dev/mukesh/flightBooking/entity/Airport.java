@@ -27,10 +27,10 @@ public class Airport extends BaseEntity {
     private String country;
 
 
-    @OneToMany(mappedBy = "source_airport")
+    @OneToMany(mappedBy = "sourceAirport")
     private List<Flight> sourceFlights;
 
-    @OneToMany(mappedBy = "dest_airport")
+    @OneToMany(mappedBy = "destAirport")
     private List<Flight> destinationFlights;
 
 }

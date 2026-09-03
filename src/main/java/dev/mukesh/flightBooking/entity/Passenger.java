@@ -19,10 +19,10 @@ public class Passenger extends  BaseEntity {
             allocationSize = 1
     )
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "passenger_sequence")
-    private Integer id;
+    private Integer passengerId;
 
     @ManyToOne
-    @JoinColumn(name = "user_id", nullable = false, referencedColumnName = "user_id")
+    @JoinColumn(name = "user_id", nullable = false, referencedColumnName = "userId")
     private User user;
 
     @Column(nullable = false)

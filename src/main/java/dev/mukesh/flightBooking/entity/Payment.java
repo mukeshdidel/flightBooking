@@ -22,7 +22,7 @@ public class Payment extends BaseEntity {
     private Integer paymentId;
 
     @ManyToOne
-    @JoinColumn(name = "booking_id", nullable = false, referencedColumnName = "booking_id")
+    @JoinColumn(name = "booking_id", nullable = false, referencedColumnName = "bookingId")
     private Booking booking;
 
 

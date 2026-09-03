@@ -32,7 +32,7 @@ public class Aircraft extends BaseEntity {
     private int capacity;
 
     @ManyToOne
-    @JoinColumn(name = "airline_code", nullable = false, referencedColumnName = "airline_code")
+    @JoinColumn(name = "airline_code", nullable = false, referencedColumnName = "airlineCode")
     private Airline airline;
 
     @OneToMany(mappedBy = "aircraft")
