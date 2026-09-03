@@ -4,16 +4,13 @@ package dev.mukesh.flightBooking.entity;
 import jakarta.persistence.*;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.hibernate.annotations.CreationTimestamp;
-import org.hibernate.annotations.UpdateTimestamp;
 
-import java.time.LocalDateTime;
 import java.util.List;
 
 @Entity
 @NoArgsConstructor
 @Data
-public class Passenger {
+public class Passenger extends  BaseEntity {
 
     @Id
     @SequenceGenerator(
@@ -25,7 +22,7 @@ public class Passenger {
     private Integer id;
 
     @ManyToOne
-    @JoinColumn(name = "user_id", nullable = false)
+    @JoinColumn(name = "user_id", nullable = false, referencedColumnName = "user_id")
     private User user;
 
     @Column(nullable = false)
@@ -46,12 +43,5 @@ public class Passenger {
 
     @OneToMany(mappedBy = "passenger")
     private List<Ticket> tickets;
-
-    @CreationTimestamp
-    private LocalDateTime createdAt;
-
-    @UpdateTimestamp
-    private LocalDateTime updatedAt;
-
 }
 

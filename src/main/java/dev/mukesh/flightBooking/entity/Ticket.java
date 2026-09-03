@@ -8,7 +8,7 @@ import lombok.NoArgsConstructor;
 @Entity
 @Data
 @NoArgsConstructor
-public class Ticket {
+public class Ticket extends BaseEntity {
 
     @Id
     @SequenceGenerator(
@@ -20,22 +20,24 @@ public class Ticket {
     private Integer id;
 
     @ManyToOne
-    @JoinTable(name = "booking_id")
+    @JoinColumn(name = "booking_id", nullable = false, referencedColumnName = "booking_id")
     private Booking booking;
 
 
     @ManyToOne
-    @JoinTable(name = "passenger_id")
+    @JoinColumn(name = "passenger_id", nullable = false, referencedColumnName = "passenger_id")
     private Passenger passenger;
 
     @ManyToOne
-    @JoinTable(name = "flight_id")
+    @JoinColumn(name = "flight_id", nullable = false, referencedColumnName = "flight_id")
     private Flight flight;
 
     // todo; add seat mapping
 
     private String seatNumber;
 
+
+    @Column(nullable = false)
     private TicketStatus status;
 
 

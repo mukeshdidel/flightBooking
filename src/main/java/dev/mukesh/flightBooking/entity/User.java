@@ -4,17 +4,14 @@ package dev.mukesh.flightBooking.entity;
 import jakarta.persistence.*;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.hibernate.annotations.CreationTimestamp;
-import org.hibernate.annotations.UpdateTimestamp;
 
-import java.time.LocalDateTime;
 import java.util.List;
 
 @Entity
 @NoArgsConstructor
 @Data
 @Table(name = "users")
-public class User {
+public class User extends BaseEntity {
 
     @Id
     @SequenceGenerator(
@@ -23,7 +20,7 @@ public class User {
             allocationSize = 1
     )
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "user_sequence")
-    private Integer id;
+    private Integer userId;
 
     @Column(nullable = false, unique = true)
     private String email;
@@ -46,11 +43,5 @@ public class User {
     @OneToMany(mappedBy = "user")
     private List<Passenger> passengers;
 
-
-    @CreationTimestamp
-    private LocalDateTime createdAt;
-
-    @UpdateTimestamp
-    private LocalDateTime updatedAt;
 
 }

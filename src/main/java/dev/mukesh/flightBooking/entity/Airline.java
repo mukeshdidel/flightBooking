@@ -6,15 +6,11 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.hibernate.annotations.CreationTimestamp;
-import org.hibernate.annotations.UpdateTimestamp;
-
-import java.time.LocalDateTime;
 
 @Entity
 @Data
 @NoArgsConstructor
-public class Airline {
+public class Airline  extends BaseEntity {
 
     @Id
     private String airlineCode;
@@ -25,12 +21,6 @@ public class Airline {
     @Column(nullable = false)
     private String countryCode;
 
-
-    @CreationTimestamp
-    private LocalDateTime createdAt;
-
-    @UpdateTimestamp
-    private LocalDateTime updatedAt;
 
 
 }

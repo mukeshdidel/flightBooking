@@ -6,15 +6,11 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.hibernate.annotations.CreationTimestamp;
-import org.hibernate.annotations.UpdateTimestamp;
-
-import java.time.LocalDateTime;
 
 @Entity
 @Data
 @NoArgsConstructor
-public class Airport {
+public class Airport extends BaseEntity {
     @Id
     private String airportCode;
 
@@ -27,15 +23,9 @@ public class Airport {
     @Column(nullable = false)
     private String country;
 
-    @Column(nullable = false)
-    private String timeZone;
 
 
-    @CreationTimestamp
-    private LocalDateTime createdAt;
-
-    @UpdateTimestamp
-    private LocalDateTime updatedAt;
+    // todo: add flights src and dest
 
 
 }
