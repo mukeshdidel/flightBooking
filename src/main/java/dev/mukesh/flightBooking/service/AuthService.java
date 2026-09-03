@@ -3,7 +3,10 @@ package dev.mukesh.flightBooking.service;
 
 import dev.mukesh.flightBooking.entity.User;
 import dev.mukesh.flightBooking.exception.ConflictException;
+import dev.mukesh.flightBooking.exception.InvalidCredentialsException;
+import dev.mukesh.flightBooking.model.req.UserLoginReq;
 import dev.mukesh.flightBooking.model.req.UserRegisterReq;
+import dev.mukesh.flightBooking.model.res.UserLoginRes;
 import dev.mukesh.flightBooking.model.res.UserRegisterRes;
 import dev.mukesh.flightBooking.repo.UserRepository;
 import jakarta.validation.Valid;
@@ -46,6 +49,25 @@ public class AuthService {
                 .lastName(savedUser.getLastName())
                 .email(savedUser.getEmail())
                 .phoneNumber(savedUser.getPhoneNumber())
+                .build();
+
+    }
+
+
+    public UserLoginRes login(UserLoginReq userLoginReqBody) {
+
+        User user = userRepository.findByEmail(userLoginReqBody.getEmail())
+                .orElseThrow(() -> new InvalidCredentialsException("invalid email or password"));
+
+        if(!user.getPassword().equals(userLoginReqBody.getPassword())) {
+            throw new InvalidCredentialsException("invalid email or password");
+        }
+
+        return UserLoginRes.builder()
+                .firstName(user.getFirstName())
+                .lastName(user.getLastName())
+                .email(user.getEmail())
+                .phoneNumber(user.getPhoneNumber())
                 .build();
 
     }
