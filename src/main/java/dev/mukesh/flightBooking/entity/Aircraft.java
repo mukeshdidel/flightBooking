@@ -5,6 +5,8 @@ import jakarta.persistence.*;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.List;
+
 
 @Entity
 @Data
@@ -32,6 +34,12 @@ public class Aircraft extends BaseEntity {
     @ManyToOne
     @JoinColumn(name = "airline_code", nullable = false, referencedColumnName = "airline_code")
     private Airline airline;
+
+    @OneToMany(mappedBy = "aircraft")
+    private List<Flight> flights;
+
+    @OneToMany(mappedBy = "aircraft")
+    private  List<Seat> seats;
 
 
 }

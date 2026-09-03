@@ -32,7 +32,10 @@ public class Ticket extends BaseEntity {
     @JoinColumn(name = "flight_id", nullable = false, referencedColumnName = "flight_id")
     private Flight flight;
 
-    // todo; add seat mapping
+    @ManyToOne
+    @JoinColumn(name = "seat_id", nullable = false, referencedColumnName = "seat_id")
+    private Seat seat;
+
 
     private String seatNumber;
 

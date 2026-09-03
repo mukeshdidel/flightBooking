@@ -4,8 +4,11 @@ package dev.mukesh.flightBooking.entity;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+
+import java.util.List;
 
 @Entity
 @Data
@@ -20,6 +23,12 @@ public class Airline  extends BaseEntity {
 
     @Column(nullable = false)
     private String countryCode;
+
+    @OneToMany(mappedBy = "airline")
+    private List<Flight> flights;
+
+    @OneToMany(mappedBy = "airline")
+    private  List<Aircraft> aircrafts;
 
 
 

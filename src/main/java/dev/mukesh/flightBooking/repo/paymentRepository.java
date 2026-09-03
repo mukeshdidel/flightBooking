@@ -1,10 +1,10 @@
 package dev.mukesh.flightBooking.repo;
 
 
-import dev.mukesh.flightBooking.entity.User;
+import dev.mukesh.flightBooking.entity.Payment;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface UserRepo extends JpaRepository<User, Integer> {
+public interface paymentRepository extends JpaRepository<Payment, Integer> {
 }

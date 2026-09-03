@@ -42,8 +42,8 @@ public class Booking  extends BaseEntity {
     private List<Ticket> tickets;
 
 
-
-    // todo: add payment
+    @OneToMany(mappedBy = "booking")
+    private List<Payment> payments;
 
 
 
