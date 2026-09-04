@@ -1,7 +1,6 @@
-package dev.mukesh.flightBooking.exception;
+package dev.mukesh.flightBooking.model.res;
 
 
-import lombok.AllArgsConstructor;
 import lombok.Data;
 
 import java.util.Map;

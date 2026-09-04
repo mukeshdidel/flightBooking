@@ -9,7 +9,6 @@ import dev.mukesh.flightBooking.model.req.UserRegisterReq;
 import dev.mukesh.flightBooking.model.res.UserLoginRes;
 import dev.mukesh.flightBooking.model.res.UserRegisterRes;
 import dev.mukesh.flightBooking.repo.UserRepository;
-import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -18,20 +17,24 @@ import org.springframework.stereotype.Service;
 public class AuthService {
 
 
-    // repo
     private final UserRepository userRepository;
 
 
 
-    public UserRegisterRes register(UserRegisterReq userRegisterReqBody) {
-
-        if(userRepository.existsByEmail(userRegisterReqBody.getEmail())) {
+    private void validateUserDoesNotExist(UserRegisterReq request) {
+        if(userRepository.existsByEmail(request.getEmail())) {
             throw new ConflictException("Email already registered");
         }
 
-        if(userRepository.existsByPhoneNumber((userRegisterReqBody.getPhoneNumber()))) {
+        if(userRepository.existsByPhoneNumber((request.getPhoneNumber()))) {
             throw  new ConflictException("Phone number already registered");
         }
+
+    }
+
+    public UserRegisterRes register(UserRegisterReq userRegisterReqBody) {
+
+        validateUserDoesNotExist(userRegisterReqBody);
 
         User newUser = User.builder()
                 .email(userRegisterReqBody.getEmail())
@@ -54,14 +57,20 @@ public class AuthService {
     }
 
 
-    public UserLoginRes login(UserLoginReq userLoginReqBody) {
-
-        User user = userRepository.findByEmail(userLoginReqBody.getEmail())
+    private User authenticateUser(UserLoginReq request) {
+        User user = userRepository.findByEmail(request.getEmail())
                 .orElseThrow(() -> new InvalidCredentialsException("invalid email or password"));
 
-        if(!user.getPassword().equals(userLoginReqBody.getPassword())) {
+        if(!user.getPassword().equals(request.getPassword())) {
             throw new InvalidCredentialsException("invalid email or password");
         }
+
+        return   user;
+    }
+
+    public UserLoginRes login(UserLoginReq userLoginReqBody) {
+
+        User user = authenticateUser(userLoginReqBody);
 
         return UserLoginRes.builder()
                 .firstName(user.getFirstName())
