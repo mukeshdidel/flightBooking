@@ -1,4 +1,4 @@
-package dev.mukesh.flightBooking.entity;
+package dev.mukesh.flightBooking.enums;
 
 public enum SeatLocation {
 

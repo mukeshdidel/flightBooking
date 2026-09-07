@@ -2,14 +2,15 @@ package dev.mukesh.flightBooking.entity;
 
 
 import jakarta.persistence.*;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import java.util.List;
 
 @Entity
 @NoArgsConstructor
 @Data
+@AllArgsConstructor
+@Builder
 @Table(name = "users")
 public class User extends BaseEntity {
 
@@ -35,7 +36,7 @@ public class User extends BaseEntity {
     private String lastName;
 
     @Column(nullable = false, unique = true)
-    private String phone;
+    private String phoneNumber;
 
     @OneToMany(mappedBy = "user")
     private List<Booking> bookings;

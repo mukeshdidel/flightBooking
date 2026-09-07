@@ -1,15 +1,16 @@
 package dev.mukesh.flightBooking.model.res;
 
 
+import lombok.Builder;
 import lombok.Data;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
 
 @Data
+@Builder
 public class UserLoginRes {
 
-    private String token;
-
-    // maybe a refresh token and user related fields in future
+    private String firstName;
+    private String lastName;
+    private String email;
+    private String phoneNumber;
 
 }

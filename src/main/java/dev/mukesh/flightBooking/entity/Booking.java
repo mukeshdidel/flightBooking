@@ -1,6 +1,7 @@
 package dev.mukesh.flightBooking.entity;
 
 
+import dev.mukesh.flightBooking.enums.BookingStatus;
 import jakarta.persistence.*;
 import lombok.Data;
 import lombok.NoArgsConstructor;
