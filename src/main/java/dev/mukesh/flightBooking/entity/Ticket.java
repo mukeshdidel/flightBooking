@@ -40,7 +40,7 @@ public class Ticket extends BaseEntity {
 
     private String seatNumber;
 
-
+    @Enumerated(EnumType.STRING)
     @Column(nullable = false)
     private TicketStatus status;
 

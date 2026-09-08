@@ -39,6 +39,8 @@ public class Payment extends BaseEntity {
     @Column(nullable = false)
     private LocalDateTime transactionDate;
 
+
+    @Enumerated(EnumType.STRING)
     @Column(nullable = false)
     private TransactionStatus status;
 

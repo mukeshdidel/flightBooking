@@ -31,9 +31,11 @@ public class Seat extends BaseEntity {
     @Column(nullable = false)
     private String seatNumber;
 
-    @Column(nullable = false)
-    private SeatClass seatClass;
+//    @Column(nullable = false)
+//    private SeatClass seatClass;
 
+
+    @Enumerated(EnumType.STRING)
     @Column(nullable = false)
     private SeatLocation seatLocation;
 

@@ -33,6 +33,7 @@ public class Booking  extends BaseEntity {
     @Column(nullable = false)
     private double totalFare;
 
+    @Enumerated(EnumType.STRING)
     @Column(nullable = false)
     private BookingStatus status;
 

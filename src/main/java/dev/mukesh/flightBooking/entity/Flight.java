@@ -7,6 +7,7 @@ import lombok.NoArgsConstructor;
 
 import java.time.LocalDateTime;
 import java.util.List;
+import java.math.BigDecimal;
 
 @Entity
 @Data
@@ -47,8 +48,17 @@ public class Flight extends BaseEntity {
     @Column(nullable = false)
     private LocalDateTime arrivalTime;
 
+    @Enumerated(EnumType.STRING)
     @Column(nullable = false)
     private FlightStatus status;
+
+
+    @Column(nullable = false)
+    private Integer availableSeats;
+
+
+    @Column(nullable = false)
+    private Double price;
 
 
     @OneToMany(mappedBy = "flight")
