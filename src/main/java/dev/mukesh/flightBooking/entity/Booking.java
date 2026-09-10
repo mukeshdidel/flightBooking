@@ -31,7 +31,7 @@ public class Booking  extends BaseEntity {
     private LocalDateTime bookingDate;
 
     @Column(nullable = false)
-    private double totalFare;
+    private Double totalFare;
 
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)
@@ -47,6 +47,10 @@ public class Booking  extends BaseEntity {
     @OneToMany(mappedBy = "booking")
     private List<Payment> payments;
 
+
+    @ManyToOne
+    @JoinColumn(name = "flight_id", nullable = false, referencedColumnName = "flightId")
+    private Flight flight;
 
 
 }

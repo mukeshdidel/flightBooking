@@ -73,6 +73,7 @@ public class AuthService {
         User user = authenticateUser(userLoginReqBody);
 
         return UserLoginRes.builder()
+                .userId(user.getUserId())
                 .firstName(user.getFirstName())
                 .lastName(user.getLastName())
                 .email(user.getEmail())

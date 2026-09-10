@@ -6,6 +6,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
+import java.time.LocalDate;
 import java.util.List;
 
 
@@ -15,8 +16,8 @@ public interface FlightRepository extends JpaRepository<Flight, Integer> {
 
 
     @Query(
-            value = "SELECT * FROM Flight WHERE source_airport = :src AND dest_airport = :dest AND DATE(departure_time) = CAST(:searchDate AS DATE)",
+            value = "select * from flight where source_airport = :src and dest_airport = :dest and DATE(departure_time) = :searchDate and available_seats > 0",
             nativeQuery = true
     )
-    List<Flight> searchFlight(@Param("src") String source, @Param("dest") String destination, @Param("searchDate") String date);
+    List<Flight> searchFlight(@Param("src") String source, @Param("dest") String destination, @Param("searchDate") LocalDate date);
 }

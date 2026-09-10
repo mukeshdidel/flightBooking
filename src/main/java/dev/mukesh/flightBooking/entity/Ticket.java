@@ -33,12 +33,9 @@ public class Ticket extends BaseEntity {
     @JoinColumn(name = "flight_id", nullable = false, referencedColumnName = "flightId")
     private Flight flight;
 
-    @ManyToOne
-    @JoinColumn(name = "seat_id", nullable = false, referencedColumnName = "seatId")
-    private Seat seat;
-
-
-    private String seatNumber;
+    @OneToOne
+    @JoinColumn(name = "flight_seat_id", nullable = false, referencedColumnName = "flight_seat_id")
+    private FlightSeatMap flightSeatMap;
 
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)

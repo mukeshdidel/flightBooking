@@ -2,17 +2,18 @@ package dev.mukesh.flightBooking.service;
 
 
 import dev.mukesh.flightBooking.entity.Flight;
-import dev.mukesh.flightBooking.entity.Seat;
+import dev.mukesh.flightBooking.entity.FlightSeatMap;
 import dev.mukesh.flightBooking.exception.ResourceNotFoundException;
 import dev.mukesh.flightBooking.model.res.FlightDetailsRes;
 import dev.mukesh.flightBooking.model.res.FlightSearchRes;
 import dev.mukesh.flightBooking.repo.FlightRepository;
+import dev.mukesh.flightBooking.repo.FlightSeatMapRepository;
 import dev.mukesh.flightBooking.repo.SeatRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.util.List;
-import java.util.Set;
 
 @Service
 @RequiredArgsConstructor
@@ -21,8 +22,9 @@ public class FlightService {
 
     private final FlightRepository flightRepository;
     private final SeatRepository seatRepository;
+    private final FlightSeatMapRepository flightSeatMapRepository;
 
-    public List<FlightSearchRes> searchFlights(String source, String destination, String date) {
+    public List<FlightSearchRes> searchFlights(String source, String destination, LocalDate date) {
 
         List<Flight> flights = flightRepository.searchFlight(source, destination, date);
 
@@ -54,17 +56,13 @@ public class FlightService {
     public FlightDetailsRes getFlightDetails(Integer id) {
 
         Flight flight = flightRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Flight not found"));
-
-        List<Seat> aircraftSeats = seatRepository.findByAircraftId(flight.getAircraft().getAircraftId());
-
-        // todo: mark as available or not available in seats
-
-        List<FlightDetailsRes.SeatRes> seatModels = aircraftSeats.stream().map(seat ->
+        List<FlightSeatMap> flightSeatMaps = flightSeatMapRepository.findByFlightId(flight.getFlightId());
+        List<FlightDetailsRes.SeatRes> seatModels = flightSeatMaps.stream().map(map ->
                 FlightDetailsRes.SeatRes.builder()
-                        .seatId(seat.getSeatId())
-                        .seatNumber(seat.getSeatNumber())
-                        .location(seat.getSeatLocation())
-                        .isAvailable(true) // todo: hardcoded!,  check if seat is booked or not
+                        .seatId(map.getFlightSeatId())
+                        .seatNumber(map.getSeat().getSeatNumber())
+                        .location(map.getSeat().getSeatLocation())
+                        .isAvailable(map.getIsAvailable())
                         .build()
         ).toList();
 

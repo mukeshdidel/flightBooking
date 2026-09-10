@@ -31,16 +31,11 @@ public class Seat extends BaseEntity {
     @Column(nullable = false)
     private String seatNumber;
 
-//    @Column(nullable = false)
-//    private SeatClass seatClass;
-
+    @OneToMany(mappedBy = "seat")
+    private List<FlightSeatMap> flightSeatMaps;
 
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)
     private SeatLocation seatLocation;
-
-
-    @OneToMany(mappedBy = "seat")
-    private List<Ticket> tickets;
 
 }

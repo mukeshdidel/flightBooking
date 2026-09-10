@@ -5,10 +5,12 @@ import dev.mukesh.flightBooking.model.res.FlightDetailsRes;
 import dev.mukesh.flightBooking.model.res.FlightSearchRes;
 import dev.mukesh.flightBooking.service.FlightService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDate;
 import java.util.List;
 
 @RequiredArgsConstructor
@@ -24,7 +26,11 @@ public class FlightController {
 
 
     @GetMapping("/flights/search")
-    public ResponseEntity<List<FlightSearchRes>> searchFlights(@RequestParam String source, @RequestParam String destination, @RequestParam String date) {
+    public ResponseEntity<List<FlightSearchRes>> searchFlights(
+            @RequestParam String source,
+            @RequestParam String destination,
+            @RequestParam LocalDate date
+    ) {
         List<FlightSearchRes> flights = flightService.searchFlights(source, destination, date);
         return new ResponseEntity<>(flights, HttpStatus.OK);
     }

@@ -42,6 +42,14 @@ public class Flight extends BaseEntity {
     private Aircraft aircraft;
 
 
+    @OneToMany(mappedBy = "flight")
+    private List<Booking> bookings;
+
+
+    @OneToMany(mappedBy = "flight")
+    private List<FlightSeatMap> flightSeatMaps;
+
+
     @Column(nullable = false)
     private LocalDateTime departureTime;
 

@@ -1,7 +1,10 @@
 package dev.mukesh.flightBooking.entity;
 
 
+import dev.mukesh.flightBooking.enums.Gender;
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -9,7 +12,9 @@ import java.util.List;
 
 @Entity
 @NoArgsConstructor
+@AllArgsConstructor
 @Data
+@Builder
 public class Passenger extends  BaseEntity {
 
     @Id
@@ -31,15 +36,14 @@ public class Passenger extends  BaseEntity {
     @Column(nullable = false)
     private String lastName;
 
-    @Column(nullable = false)
     private String email;
 
-    @Column(nullable = false)
+    private Gender gender;
+
     private String phoneNumber;
 
     private String passportNumber;
 
-    private String nationality;
 
     @OneToMany(mappedBy = "passenger")
     private List<Ticket> tickets;
